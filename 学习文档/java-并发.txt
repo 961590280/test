@@ -1,0 +1,32 @@
+----2015-8-9
+	1.Thrad构造函数需要一个Runable对象--实现Runnable接口的对象。
+	2.Thread.yield()方法建议线程调度机制切换线程--让步。（通过实验发现调用此方法后被切换线程的概率比不调用时更大，使得各线程并行度更高）
+	3.Executor（执行器）管理Thread对象，ExeutorService是具有服务生命周期的Executor。CachedTreadPool为每一个任务（Runnable对象）创建线程，由Executor的静态方法创建，此线程池在回收旧线程时停止创建新线程。
+	4.FixedThreadPool创建固定大小的线程池，线程异常结束时，添加新线程。
+	5.SingleThreadPool创建大小为1的线程池，所有线程串联执行。
+	6.Callable对象的call方法类似Runnable 的run()方法，但可以返回值。Callable是泛型。Executor.submit调用Callable对象，返回Future对象。
+	7.sleep之后线程阻塞，切换线程。
+	8.volatile 类型修饰符 让编译器不对变量进行优化
+	9.优先级 设置当前线程优先级：Thread.currentThread().setPriority(int i);//i为优先级
+	10.后台线程或者叫守护线程（daemon）用于为程序提供服务运行在后台的线程，当虚拟机中所有非后台线程结束时，虚拟机中运行的的后台线程都会结束，主线程结束。
+		要在后台线程start之前调用setDaemon()方法，使线程设置为后台线程
+	11.InterruptedException 执行中的线程被中断异常
+	12.ThreadFactory接口 实现创建线程的工厂方法。对象可以作为Executor.newCachedThreadsPool()的参数。
+	13.后台线程创建的线程默认是后台线程 isDaemon()的值为 true
+	14.当后台线程因为主线程的结束而被关闭时，任务中fially块中的语句不会被执行--即后台线程是被立即关闭的。
+	15.通过继承Thread类，实现run方法就可以构造一个任务类。或者还是继承Ruannable接口 在类中添加Thread私有成员 并在任务类的构造方法中实例化与调用start()方法。或者在任务类中使用内部类
+	16.join()方法在某任务类中调用另外的线程对象的join方法，则该任务的线程被挂起直到调用join方法的线程结束。可对调用join方法的线程调用interrupt()方法中断join()方法。join()带参数的话，则指定时间过后就算当前运行的线程没有结束join方法也返回。
+----2015-8-12
+	17.任务和线程的区别
+	18.捕获线程逃逸出来的异常。实现Thread.UncaughtExceptionHandler接口的uncaughtException()方法，调用Thread的静态方法setDefualtUncaughtExcetionHandler()设置Thread默认异常处理程序。如果Thread对象调用setUncaughtException()则设置专有异常处理器。优先调用专有异常处理器。
+	19.原子性：除了long和double之外的其他基本数据类型操作都是原子性的
+	   可视性：
+	20.加锁：设置方法为synchronized。共享资源--成员应为private。否则不能防止其他任务直接访问成员，这与synchronized关键字冲突。
+	21.重复加锁：当一个方法
+----2015-8-12
+	22.Lock对象：业务写在try快内，在try块前调用对象的lock()方法，在finally中调用unlock方法。
+	Lock相对于使用synchronized关键字的优点在于方法若抛出异常将无法处理，而前者则可以finally块中将系统维护在正确状态。
+	23.ReentrantLock对象可以尝试获取锁，可以在lock(2，TimeUnit.SECONDS)方法中传入参数，指定尝试时间（第二个参数为时间单位，使用TimeUnit类）。
+	24.volatile：修饰long和double 使其获得原子性。还可以确保
+	25.原子性：除了long和double之外的其他基本数据类型操作都是原子性的
+	   可视性：

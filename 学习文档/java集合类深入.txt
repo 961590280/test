@@ -1,0 +1,2 @@
+collection 接口：是所有集合类的要实现的接口
+collection 方法：无参构造函数、有参构造函数（参数为collection对象）		
