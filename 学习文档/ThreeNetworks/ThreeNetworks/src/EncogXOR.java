@@ -15,10 +15,19 @@ import org.encog.util.logging.Logging;
 
 public class EncogXOR {
 
-	public static double XOR_INPUT[][] = { { 0.0, 0.0 }, { 1.0, 0.0 },
-			{ 0.0, 1.0 }, { 1.0, 1.0 } };
+	public static double XOR_INPUT[][] = { 
+		{ 0.0, 0.0 },
+		{ 1.0, 0.0 },
+		{ 0.0, 1.0 }, 
+		{ 1.0, 1.0 } 
+		};
 
-	public static double XOR_IDEAL[][] = { { 0.0 }, { 1.0 }, { 1.0 }, { 0.0 } };
+	public static double XOR_IDEAL[][] = {
+		{ 0.0 },
+		{ 1.0 }, 
+		{ 1.0 }, 
+		{ 0.0 } 
+		};
 
 	public static void main(final String args[]) {
 		
@@ -28,6 +37,7 @@ public class EncogXOR {
 		network.addLayer(new BasicLayer(new ActivationSigmoid(),true,2));
 		network.addLayer(new BasicLayer(new ActivationSigmoid(),true,3));
 		network.addLayer(new BasicLayer(new ActivationSigmoid(),true,1));
+		
 		network.setLogic(new FeedforwardLogic());
 		network.getStructure().finalizeStructure();
 		network.reset();

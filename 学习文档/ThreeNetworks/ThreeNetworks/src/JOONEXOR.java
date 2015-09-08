@@ -17,11 +17,19 @@ public class JOONEXOR implements NeuralNetListener {
 	private Monitor monitor;
 	private NeuralNet nnet;
 	private CountDownLatch latch = new CountDownLatch(1);
-	public static double XOR_INPUT[][] = { { 0.0, 0.0 }, { 1.0, 0.0 },
-		{ 0.0, 1.0 }, { 1.0, 1.0 } };
+	public static double XOR_INPUT[][] = { 
+		{ 0.0, 0.0 }, 
+		{ 1.0, 0.0 },
+		{ 0.0, 1.0 }, 
+		{ 1.0, 1.0 } };
 	private int epoch;
 	
-public static double XOR_IDEAL[][] = { { 0.0 }, { 1.0 }, { 1.0 }, { 0.0 } };
+public static double XOR_IDEAL[][] = {
+	{ 0.0 },
+	{ 1.0 },
+	{ 1.0 }, 
+	{ 0.0 } 
+	};
 
 	
 	public JOONEXOR()
@@ -102,6 +110,7 @@ public static double XOR_IDEAL[][] = { { 0.0 }, { 1.0 }, { 1.0 }, { 0.0 } };
 		
 		try {
 			nnet.go(); // The net starts in async mode
+			nnet.restore();
 			this.latch.await();
 			
 			
